@@ -10,10 +10,14 @@ for (colname in names(animals)) {
   }
 }
 
-# Use the average of date_started and date_closed as the date?
-dates <- lapply(animals[c("date_started", "date_closed")], strptime, format = '%m/%d/%Y')
+# Use the date_started as the date.
+animals$date_reported <- animals$date_started
+
+# Record how long the case was open for.
+animals$case_duration <- difftime(dates$date_closed, dates$date_started, units = 'days')
+
+# Delete date stuff.
 animals$date_started <- animals$date_closed <- animals$resolution_action_updated <- NULL
-animals$date <- as.Date(dates$date_started + ((dates$date_closed - dates$date_started) / 2))
 
 names.thing <- c("animal", "quantity", "body_part_found", "complaint_details", "resolution_description")
 names.reporting <- c("source", "division")
