@@ -1,6 +1,10 @@
 library(sqldf)
 
-animals <- sqldf('select * from incidents', dbname = 'animals.db')
+sql <- '
+select *, count(*) as \'n_reports\' from incidents
+group by "date_reported", "park_district", "property_number"
+'
+animals <- sqldf(sql, dbname = 'animals.db')
 
 # Remove things that are the same for all rows or all but one row.
 for (colname in names(animals)) {
@@ -10,15 +14,21 @@ for (colname in names(animals)) {
   }
 }
 
+# Parse dates.
+animals$date_started <- as.Date(strptime(animals$date_started, format = '%m/%d/%Y'))
+animals$date_closed <- as.Date(strptime(animals$date_closed, format = '%m/%d/%Y'))
+
 # Use the date_started as the date.
-animals$date_reported <- as.Date(strptime(animals$date_started, format = '%m/%d/%Y'))
-animals$month <- as.Date(strftime(animals$date_reported, '%Y-%m-1'))
+animals$day <- animals$date_started
+animals$month <- as.Date(strftime(animals$date_started, '%Y-%m-1'))
 
 # Record how long the case was open for.
-animals$case_duration <- difftime(dates$date_closed, dates$date_started, units = 'days')
+animals$case_duration <- difftime(animals$date_closed, animals$date_started, units = 'days')
 
 # Delete date stuff.
 animals$date_started <- animals$date_closed <- animals$resolution_action_updated <- NULL
+
+# To do: deduplicate
 
 names.thing <- c("animal", "quantity", "body_part_found", "complaint_details", "resolution_description")
 names.reporting <- c("source", "division")
