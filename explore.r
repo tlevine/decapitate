@@ -11,6 +11,7 @@ group by month, round(lng, 5), round(lat, 5)
 i <- sqldf('select * from incidents', dbname = 'animals.db')
 i$month <- strftime(strptime(i$date_started, format = '%m/%d/%Y'), format = '%Y-%m')
 animals <- sqldf(sql)
+animals$month <- NULL
 
 # Remove things that are the same for all rows or all but one row.
 for (colname in names(animals)) {
