@@ -1,7 +1,11 @@
 library(sqldf)
 
 sql <- '
-select *, count(*) as \'n_reports\' from incidents
+select *,
+  count(*) as \'n_reports\',
+  min(quantity), max(quantity),
+  min(lng), max(lng), min(lat), max(lat)
+from incidents
 group by
   strftime(\'%Y\', "date_reported"),
   "council_district_number", "park_district",
