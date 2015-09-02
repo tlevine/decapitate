@@ -13,22 +13,11 @@ how many icons ~ quantity
 icon ~ bird
 x ~ date (separate panel)
 background color ~ season
+text ~ complaint details, park name
 
 Something needs to spin or bounce or something. Maybe the heads/bodies.
 They could gradually build up the vertices of a regular polygon. Or just a line.
 And then they could roll or fall into a date bucket.
-
-
-Dunno yet
-
-* date (maybe the average of date_started, date_closed, resolution_action_updated)
-* animal
-* quantity
-* body_part_found
-* complaint_details
-* resolution_description
-* source
-* division
 
 Join with other data
 
