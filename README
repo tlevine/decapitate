@@ -31,3 +31,10 @@ Join with other data
 To do
 
 * Draw bird head, bird body, ground-dweller head, ground-dweller body (four symbols)
+
+Outline
+
+* Left side is a longitude-latitude map of the Earth proportions.
+* Each phrase is an incident (deduplicated) or an empty phrase of sorts.
+* New icons rotate and gradually populate through the phrase, centered at the date (x) and latitude (y).
+* Then they fall into a bucket on the next phrase, populating a histogram along the bottom.
