@@ -11,7 +11,7 @@ order ~ borough + lng # Order first by borough then by longitude
 map ~ lng, lat
 color ~ borough
 how many icons ~ quantity
-icon ~ bird
+icon ~ bird (http://stackoverflow.com/questions/28042220/how-to-make-custom-plot-symbols-from-vector-graphics-in-r)
 x ~ date (separate panel)
 background color on a region of a histogram ~ season
 text ~ complaint details, park name
@@ -25,4 +25,9 @@ Join with other data
 
 * Weather on date of report?
   http://www.almanac.com/weather/history/NY/New%20York/2015-08-31
+  http://www.intellicast.com/Local/History.aspx?location=USNY0996
 * A correlated ETF?
+
+To do
+
+* Draw bird head, bird body, ground-dweller head, ground-dweller body (four symbols)
