@@ -4,9 +4,19 @@ Legend
 ---------------------
 whole note, half note, third note, quarter note, &c. ~ quantity
 stanza ~ borough
-head ~ .
-body ~ .
-bird v not bird ~ .
+instrument ~ head, body, head + body
+. ~ bird v not bird
+
+map ~ lng, lat
+color ~ borough
+how many icons ~ quantity
+icon ~ bird
+x ~ date (separate panel)
+
+Something needs to spin or bounce or something. Maybe the heads/bodies.
+They could gradually build up the vertices of a regular polygon. Or just a line.
+And then they could roll or fall into a date bucket.
+
 
 Dunno yet
 
