@@ -6,6 +6,7 @@ whole note, half note, third note, quarter note, &c. ~ quantity
 stanza ~ borough
 instrument ~ head, body, head + body
 . ~ bird v not bird
+order ~ borough + lng # Order first by borough then by longitude
 
 map ~ lng, lat
 color ~ borough
