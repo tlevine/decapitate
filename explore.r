@@ -9,9 +9,11 @@ for (colname in names(animals)) {
     animals[,colname] <- NULL
   }
 }
+f <- function(vec) (strptime(vec, format = '%m/%d/%Y'))
+dates <- data.frame(lapply(animals[c("date_started", "date_closed")], f))
+animals$date_started <- animals$date_closed <- animals$resolution_action_updated <- NULL
 
 names.thing <- c("animal", "quantity", "body_part_found", "complaint_details", "resolution_description")
-names.date <- c("date_started", "date_closed", "resolution_action_updated")
 names.reporting <- c("source", "division")
 names.location <- c("park_or_facility", "property_number", "park_district",
                     "additional_location_details", "council_district_number",
