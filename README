@@ -12,6 +12,7 @@ color ~ borough
 how many icons ~ quantity
 icon ~ bird
 x ~ date (separate panel)
+background color ~ season
 
 Something needs to spin or bounce or something. Maybe the heads/bodies.
 They could gradually build up the vertices of a regular polygon. Or just a line.
