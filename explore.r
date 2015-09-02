@@ -2,21 +2,20 @@ library(sqldf)
 
 sql <- '
 select *,
-  count(*) as \'n_reports\',
+  count(*),
   min(quantity), max(quantity),
   min(lng), max(lng), min(lat), max(lat)
-from incidents
-group by
-  strftime(\'%Y\', "date_reported"),
-  "council_district_number", "park_district",
-  "property_number", "site_city_zip"
+from i
+group by month, round(lng, 5), round(lat, 5)
 '
-animals <- sqldf(sql, dbname = 'animals.db')
+i <- sqldf('select * from incidents', dbname = 'animals.db')
+i$month <- strftime(strptime(i$date_started, format = '%m/%d/%Y'), format = '%Y-%m')
+animals <- sqldf(sql)
 
 # Remove things that are the same for all rows or all but one row.
 for (colname in names(animals)) {
   n <- length(unique(animals[,colname]))
-  if (n <= 2) {
+  if (n <= 2 && !grepl('\\(', colname)) {
     animals[,colname] <- NULL
   }
 }
@@ -34,8 +33,6 @@ animals$case_duration <- difftime(animals$date_closed, animals$date_started, uni
 
 # Delete date stuff.
 animals$date_started <- animals$date_closed <- animals$resolution_action_updated <- NULL
-
-# To do: deduplicate
 
 names.thing <- c("animal", "quantity", "body_part_found", "complaint_details", "resolution_description")
 names.reporting <- c("source", "division")
