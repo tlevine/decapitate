@@ -12,6 +12,7 @@ for (colname in names(animals)) {
 
 # Use the date_started as the date.
 animals$date_reported <- as.Date(strptime(animals$date_started, format = '%m/%d/%Y'))
+animals$month <- as.Date(strftime(animals$date_reported, '%Y-%m-1'))
 
 # Record how long the case was open for.
 animals$case_duration <- difftime(dates$date_closed, dates$date_started, units = 'days')
@@ -31,4 +32,7 @@ explore <- function() {
        xlab = 'Week of the year', ylab = 'Number of decapitated animal reports',
        bty = 'n')
   plot(lng~lat, data = animals, cex = quantity, col = as.numeric((factor(site_borough))))
+  plot(quantity ~ month, xlab = '', ylab = 'Animal parts found per month',
+       data = sqldf('select month, sum(quantity) as \'quantity\' from animals group by month'),
+       type = 'l', bty = 'n', main = 'How many animal parts did we find each month?')
 }
