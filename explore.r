@@ -11,7 +11,7 @@ for (colname in names(animals)) {
 }
 
 # Use the date_started as the date.
-animals$date_reported <- animals$date_started
+animals$date_reported <- as.Date(strptime(animals$date_started, format = '%m/%d/%Y'))
 
 # Record how long the case was open for.
 animals$case_duration <- difftime(dates$date_closed, dates$date_started, units = 'days')
@@ -25,3 +25,9 @@ names.location <- c("park_or_facility", "property_number", "park_district",
                     "additional_location_details", "council_district_number",
                     "site_street_address", "site_borough", "site_city_zip",
                     "lat", "lng")
+
+explore <- function() {
+  plot(table(as.numeric(strftime(animals$date_reported, format = '%W'))),
+       xlab = 'Week of the year', ylab = 'Number of decapitated animal reports',
+       bty = 'n')
+}
