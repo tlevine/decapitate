@@ -1,1 +1,16 @@
 http://uselesspress.org/things/decapitated-animals-dataset/
+
+Legend
+---------------------
+whole note, half note, third note, quarter note, &c. ~ quantity
+
+Dunno yet
+
+* date (maybe the average of date_started, date_closed, resolution_action_updated)
+* animal
+* quantity
+* body_part_found
+* complaint_details
+* resolution_description
+* source
+* division

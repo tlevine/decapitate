@@ -6,7 +6,6 @@ animals <- sqldf('select * from incidents', dbname = 'animals.db')
 for (colname in names(animals)) {
   n <- length(unique(animals[,colname]))
   if (n <= 2) {
-    print(colname)
     animals[,colname] <- NULL
   }
 }
