@@ -30,4 +30,5 @@ explore <- function() {
   plot(table(as.numeric(strftime(animals$date_reported, format = '%W'))),
        xlab = 'Week of the year', ylab = 'Number of decapitated animal reports',
        bty = 'n')
+  plot(lng~lat, data = animals, cex = quantity, col = as.numeric((factor(site_borough))))
 }
