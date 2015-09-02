@@ -3,7 +3,7 @@ library(sqldf)
 sql <- '
 select *, count(*) as \'n_reports\' from incidents
 group by
-  "date_reported",
+  strftime(\'%Y\', "date_reported"),
   "council_district_number", "park_district",
   "property_number", "site_city_zip"
 '
